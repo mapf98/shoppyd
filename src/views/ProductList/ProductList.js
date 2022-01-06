@@ -54,12 +54,22 @@ function ProductList() {
             );
           })}
       </div>
-      {productState.products.length == 0 && productState.isFetched && (
+      {productState.products.length == 0 && productState.isFetched && !productState.isError && (
         <div>
           <div className="empty-wrapper">
             <TiDelete className="empty-icon" />
           </div>
           <p className="text-center">No hay productos registrados</p>
+        </div>
+      )}
+      {productState.products.length == 0 && productState.isFetched && productState.isError && (
+        <div>
+          <div className="empty-wrapper">
+            <TiDelete className="empty-icon" />
+          </div>
+          <p className="text-center">
+            Lo sentimos, ocurrió un error inesperado, intente nuevamente
+          </p>
         </div>
       )}
       {productState.searchResults.length == 0 && productState.isFetched && productState.isSearch && (

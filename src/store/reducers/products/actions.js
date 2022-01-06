@@ -10,7 +10,7 @@ export const fetchProducts = () => {
     } else {
       console.log('NEW PRODUCT LISTING REQUEST MADE AT: ', new Date().toISOString());
       dispatch(actionTypes.fetchProducts());
-      return fetch(`https://front-test-api.herokuapp.com/api/product`)
+      return fetch(`${process.env.REACT_APP_BASE_API_URL}/product`)
         .then((data) => data.json())
         .then((data) => {
           dispatch(actionTypes.fetchedProducts({ data, total: data.length }));
