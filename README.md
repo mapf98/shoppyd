@@ -1,6 +1,6 @@
 ## Despliegue de la aplicación
 
-Luego de clonar el repositorio, se podrá instalar las dependencias del proyecto y ejecutar los siguientes scripts:
+Antes de ejecutar los scripts se debe crear el archivo de variables de entorno (.env) en la carpeta raiz del proyecto siguiendo la estructura establecida en el archivo ".env.template"
 
 ### `npm start`
 
