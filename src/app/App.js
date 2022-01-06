@@ -1,16 +1,18 @@
 import * as React from 'react';
 import Header from '../components/Header/Header';
-//import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+import ProductDetails from '../views/ProductDetails/ProductDetails';
+import ProductList from '../views/ProductList/ProductList';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
       <Header />
-      {/* <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="about" element={<About />} />
-      </Routes> */}
+      <Routes>
+        <Route path="/" element={<ProductList />} />
+        <Route path="/product/details" element={<ProductDetails />} />
+      </Routes>
     </div>
   );
 }
