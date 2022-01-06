@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
 import products from './products/reducers';
-import productDetails from './productDetails/reducers';
+import navigation from './navigation/reducers';
 
-export default combineReducers({ products: products, productDetails: productDetails });
+export default combineReducers({ products: products, navigation: navigation });

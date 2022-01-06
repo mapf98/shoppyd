@@ -28,7 +28,7 @@ const products = (state = initialState, action) => {
       });
     case actionTypes.names.FETCHED_PRODUCTS:
       return Object.assign({}, state, {
-        [DEFAULT_KEY]: generateCacheTTL(process.env.STANDAR_CACHE_TIME),
+        [DEFAULT_KEY]: generateCacheTTL(parseInt(process.env.REACT_APP_STANDAR_CACHE_TIME)),
         isFetched: true,
         isError: false,
         isSearch: false,

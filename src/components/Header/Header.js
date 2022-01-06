@@ -4,14 +4,14 @@ import { TiShoppingCart } from 'react-icons/ti';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import { useSelector, useDispatch } from 'react-redux';
-import { clearProductDetailNavigation } from '../../store/reducers/productDetails/actions';
+import { clearNavigation } from '../../store/reducers/navigation/actions';
 
 function Header() {
-  const navigation = useSelector((state) => state.productDetails);
+  const navigation = useSelector((state) => state.navigation);
   const dispatch = useDispatch();
 
   function resetNavigation() {
-    dispatch(clearProductDetailNavigation());
+    dispatch(clearNavigation());
   }
 
   return (

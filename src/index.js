@@ -6,14 +6,17 @@ import './index.css';
 import App from './app/App';
 import reportWebVitals from './reportWebVitals';
 import initStore from './store';
+import { PersistGate } from 'redux-persist/integration/react';
 
-const store = initStore();
+const store = initStore().store;
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <PersistGate loading={null} persistor={initStore().persistor}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </PersistGate>
   </Provider>,
   document.getElementById('root')
 );

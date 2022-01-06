@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { setProductDetailNavigation } from '../../store/reducers/productDetails/actions';
+import { setNavigation } from '../../store/reducers/navigation/actions';
 
 function ProductDetails() {
   const { product_id, product_name } = useParams();
@@ -19,7 +19,7 @@ function ProductDetails() {
   }
 
   React.useEffect(() => {
-    dispatch(setProductDetailNavigation(product_id, formatedProductName()));
+    dispatch(setNavigation(product_id, formatedProductName()));
   }, []);
 
   return (
