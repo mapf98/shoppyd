@@ -1,6 +1,8 @@
+import { DEFAULT_KEY, generateCacheTTL } from 'redux-cache';
 import actionTypes from './actionTypes';
 
 const initialState = {
+  [DEFAULT_KEY]: null,
   isFetched: false,
   isError: false,
   isSearch: false,
@@ -26,6 +28,7 @@ const products = (state = initialState, action) => {
       });
     case actionTypes.names.FETCHED_PRODUCTS:
       return Object.assign({}, state, {
+        [DEFAULT_KEY]: generateCacheTTL(process.env.STANDAR_CACHE_TIME),
         isFetched: true,
         isError: false,
         isSearch: false,
