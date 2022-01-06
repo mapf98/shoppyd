@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { TiDelete } from 'react-icons/ti';
 import { useSelector, useDispatch } from 'react-redux';
 import './ProductList.css';
 import SearchBar from '../../components/SearchBar/SearchBar';
@@ -24,6 +25,7 @@ function ProductList() {
       {!productState.isFetched && <Loader msg={'Cargando productos...'} />}
       <div className="product-list-wrapper">
         {productState.isFetched &&
+          !productState.isSearch &&
           productState.products.map((product, index) => {
             return (
               <Product
@@ -36,7 +38,39 @@ function ProductList() {
               />
             );
           })}
+        {productState.isFetched &&
+          productState.isSearch &&
+          productState.totalProducts > 0 &&
+          productState.searchResults.map((product, index) => {
+            return (
+              <Product
+                key={index}
+                id={product.id}
+                brand={product.brand}
+                model={product.model}
+                price={product.price}
+                imgUrl={product.imgUrl}
+              />
+            );
+          })}
       </div>
+      {productState.products.length == 0 && productState.isFetched && (
+        <div>
+          <div className="empty-wrapper">
+            <TiDelete className="empty-icon" />
+          </div>
+          <p className="text-center">No hay productos registrados</p>
+        </div>
+      )}
+      {productState.searchResults.length == 0 && productState.isFetched && productState.isSearch && (
+        <div>
+          <div className="empty-wrapper">
+            <TiDelete className="empty-icon" />
+          </div>
+          <p className="text-center">No hay productos que coincidan con:</p>
+          <p className="text-center">&quot;{productState.search}&quot;</p>
+        </div>
+      )}
     </section>
   );
 }

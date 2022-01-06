@@ -3,9 +3,12 @@ import actionTypes from './actionTypes';
 const initialState = {
   isFetched: false,
   isError: false,
+  isSearch: false,
   products: [],
+  searchResults: [],
   totalProducts: 0,
-  msgError: ''
+  msgError: '',
+  search: ''
 };
 
 const products = (state = initialState, action) => {
@@ -14,25 +17,89 @@ const products = (state = initialState, action) => {
       return Object.assign({}, state, {
         isFetched: false,
         isError: false,
+        isSearch: false,
         products: [],
+        searchResults: [],
         totalProducts: 0,
-        msgError: ''
+        msgError: '',
+        search: ''
       });
     case actionTypes.names.FETCHED_PRODUCTS:
       return Object.assign({}, state, {
         isFetched: true,
         isError: false,
+        isSearch: false,
         products: action.data,
+        searchResults: [],
         totalProducts: action.total,
-        msgError: ''
+        msgError: '',
+        search: ''
       });
     case actionTypes.names.FETCH_PRODUCTS_ERROR:
       return Object.assign({}, state, {
         isFetched: true,
         isError: true,
+        isSearch: false,
         products: [],
+        searchResults: [],
         totalProducts: 0,
-        msgError: action.msg
+        msgError: action.msg,
+        search: ''
+      });
+    case actionTypes.names.FETCH_CUSTOM_SEARCH:
+      return Object.assign({}, state, {
+        isFetched: false,
+        isError: false,
+        isSearch: true,
+        products: action.data,
+        searchResults: [],
+        totalProducts: 0,
+        msgError: '',
+        search: action.search
+      });
+    case actionTypes.names.FETCHED_CUSTOM_SEARCH:
+      return Object.assign({}, state, {
+        isFetched: true,
+        isError: false,
+        isSearch: true,
+        products: action.data,
+        searchResults: action.results,
+        totalProducts: action.totalResults,
+        msgError: '',
+        search: action.search
+      });
+    case actionTypes.names.FETCHED_CUSTOM_SEARCH_ERROR:
+      return Object.assign({}, state, {
+        isFetched: true,
+        isError: true,
+        isSearch: true,
+        products: action.data,
+        searchResults: [],
+        totalProducts: 0,
+        msgError: action.msg,
+        search: ''
+      });
+    case actionTypes.names.CLEAR_CUSTOM_SEARCH:
+      return Object.assign({}, state, {
+        isFetched: true,
+        isError: false,
+        isSearch: false,
+        products: action.data,
+        searchResults: [],
+        totalProducts: action.data.length,
+        msgError: '',
+        search: ''
+      });
+    case actionTypes.names.CLEAR_CUSTOM_SEARCH_ERROR:
+      return Object.assign({}, state, {
+        isFetched: true,
+        isError: true,
+        isSearch: false,
+        products: action.data,
+        searchResults: [],
+        totalProducts: action.data.length,
+        msgError: action.msg,
+        search: ''
       });
     default:
       return state;

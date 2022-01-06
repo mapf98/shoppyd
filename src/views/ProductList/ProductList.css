@@ -12,6 +12,17 @@
   flex-wrap: wrap;
 }
 
+.empty-wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.empty-icon{
+  height: 60px;
+  width: 60px;
+}
+
 @media (max-width: 768px) {
   .product-list-toolbar {
     flex-direction: column;
