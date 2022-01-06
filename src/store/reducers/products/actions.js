@@ -19,8 +19,8 @@ export const fetchCustomSearch = (search) => {
       dispatch(actionTypes.fetchCustomSearch({ search, data: state.products }));
       let customSearchItems = state.products;
       customSearchItems = customSearchItems.filter(function (product) {
-        const productName = (product.brand + product.model).toLowerCase();
-        return productName.indexOf(search.toLowerCase()) > -1;
+        const productName = (product.brand + product.model).toLowerCase().replace(/ /g, '');
+        return productName.indexOf(search.toLowerCase().replace(/ /g, '')) > -1;
       });
       dispatch(
         actionTypes.fetchedCustomSearch({
