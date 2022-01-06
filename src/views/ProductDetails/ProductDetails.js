@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { setNavigation } from '../../store/reducers/navigation/actions';
@@ -10,6 +10,8 @@ import './ProductDetails.css';
 
 function ProductDetails() {
   const { product_id, product_name } = useParams();
+  const [color, setColor] = useState(-1);
+  const [storage, setStorage] = useState(-1);
   const state = useSelector((state) => state.productDetails);
   const dispatch = useDispatch();
 
@@ -32,9 +34,25 @@ function ProductDetails() {
     return formatedName.trim();
   }
 
+  function handleChangeColor(e) {
+    let { value } = e.target;
+    setColor(parseInt(value));
+  }
+
+  function handleChangeStorage(e) {
+    let { value } = e.target;
+    setStorage(parseInt(value));
+  }
+
+  function addToCart() {
+    console.log(color, storage);
+  }
+
   React.useEffect(() => {
     dispatch(setNavigation(product_id, formatedProductName()));
     dispatch(fetchProductDetail(product_id));
+    setColor(state.currentProductDetails.options.colors[0].code);
+    setStorage(state.currentProductDetails.options.storages[0].code);
   }, []);
 
   return (
@@ -239,7 +257,37 @@ function ProductDetails() {
                   </p>
                 </div>
               </div>
-              <div className="detail-info-actions"></div>
+              <div className="detail-info-actions">
+                <select
+                  className="custom-select"
+                  placeholder="Colores"
+                  onChange={handleChangeColor}>
+                  {state.currentProductDetails.options.colors.map((color, index) => {
+                    return (
+                      <option key={index} value={color.code}>
+                        {color.name}
+                      </option>
+                    );
+                  })}
+                </select>
+                <select
+                  className="custom-select"
+                  placeholder="Colores"
+                  onChange={handleChangeStorage}>
+                  {state.currentProductDetails.options.storages.map((storage, index) => {
+                    return (
+                      <option key={index} value={storage.code}>
+                        {storage.name}
+                      </option>
+                    );
+                  })}
+                </select>
+                <div className="custom-button-wrapper">
+                  <button className="custom-button" onClick={addToCart}>
+                    Añadir al carrito de compras
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
