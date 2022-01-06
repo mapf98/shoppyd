@@ -8,12 +8,6 @@
   margin: 10px;
 }
 
-.product-img-wrapper{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .product-price-label{
   width: 45%;
   height: 25px;
@@ -56,11 +50,6 @@
   color: white;
   height: 40px;
   width: 40px;
-}
-
-.product-img{
-  height: 250px;
-  width: auto;
 }
 
 .product-info{

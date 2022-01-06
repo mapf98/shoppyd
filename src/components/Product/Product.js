@@ -1,17 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Loader from '../../components/Loader/Loader';
 import './Product.css';
 import { TiZoomIn } from 'react-icons/ti';
 import { useNavigate } from 'react-router-dom';
+import CustomImg from '../CustomImg/CustomImg';
 
 function Product(props) {
-  const [loaded, setLoaded] = React.useState(false);
   const navigate = useNavigate();
-
-  function loadedHandler() {
-    setLoaded(true);
-  }
 
   function goToDetail() {
     let name = props.brand + ' ' + props.model;
@@ -22,15 +17,7 @@ function Product(props) {
   return (
     <div className="product-wrapper" onClick={goToDetail}>
       <div className="product-info">
-        <div className="product-img-wrapper">
-          {!loaded && <Loader msg={'Cargando...'} />}
-          <img
-            style={{ display: loaded ? 'block' : 'none' }}
-            onLoad={loadedHandler}
-            src={props.imgUrl}
-            alt={props.brand + ' ' + props.model}
-            className="product-img"></img>
-        </div>
+        <CustomImg url={props.imgUrl} name={props.brand + ' ' + props.model} height="250px" />
         <hr></hr>
         <div className="product-info-wrapper">
           {props.price !== '' && (
