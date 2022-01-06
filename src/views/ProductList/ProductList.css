@@ -1,0 +1,14 @@
+.product-list-toolbar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+}
+
+@media (max-width: 768px) {
+  .product-list-toolbar {
+    flex-direction: column;
+    height: auto;
+    margin-top: 0px;
+  }
+}
