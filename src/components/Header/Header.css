@@ -64,6 +64,17 @@
   align-items: center;
 }
 
+.breadcrumb-selector{
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.breadcrumb-root{
+  color: var(--accent-color);
+  text-decoration: underline;
+  text-decoration-color: var(--accent-color);
+}
+
 @media (max-width: 768px) {
   .header {
     flex-direction: column;
@@ -82,5 +93,10 @@
 
   .breadcrumb-wrapper{
     order: 3;
+  }
+
+  .header{
+    padding-left: 10px;
+    padding-right: 10px;
   }
 }

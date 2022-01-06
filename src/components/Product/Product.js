@@ -3,16 +3,24 @@ import PropTypes from 'prop-types';
 import Loader from '../../components/Loader/Loader';
 import './Product.css';
 import { TiZoomIn } from 'react-icons/ti';
+import { useNavigate } from 'react-router-dom';
 
 function Product(props) {
   const [loaded, setLoaded] = React.useState(false);
+  const navigate = useNavigate();
 
   function loadedHandler() {
     setLoaded(true);
   }
 
+  function goToDetail() {
+    let name = props.brand + ' ' + props.model;
+    let nameForUrl = name.toLowerCase().replace(/ /g, '-');
+    navigate(`/product/${nameForUrl}/${props.id}/details`);
+  }
+
   return (
-    <div className="product-wrapper">
+    <div className="product-wrapper" onClick={goToDetail}>
       <div className="product-info">
         <div className="product-img-wrapper">
           {!loaded && <Loader msg={'Cargando...'} />}
