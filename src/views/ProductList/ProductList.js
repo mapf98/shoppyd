@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import './ProductList.css';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import Loader from '../../components/Loader/Loader';
+import Product from '../../components/Product/Product';
 import { fetchProducts } from '../../store/reducers/products/actions';
 
 function ProductList() {
@@ -20,8 +21,22 @@ function ProductList() {
         <SearchBar />
       </div>
       <hr className="custom-divider"></hr>
-      <div className="product-list-wrapper"></div>
       {!productState.isFetched && <Loader msg={'Cargando productos...'} />}
+      <div className="product-list-wrapper">
+        {productState.isFetched &&
+          productState.products.map((product, index) => {
+            return (
+              <Product
+                key={index}
+                id={product.id}
+                brand={product.brand}
+                model={product.model}
+                price={product.price}
+                imgUrl={product.imgUrl}
+              />
+            );
+          })}
+      </div>
     </section>
   );
 }
