@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { setNavigation } from '../../store/reducers/navigation/actions';
 import { fetchProductDetail } from '../../store/reducers/productDetails/actions';
+import { addProductToCart } from '../../store/reducers/cart/actions';
 import Loader from '../../components/Loader/Loader';
 import { TiDelete } from 'react-icons/ti';
 import CustomImg from '../../components/CustomImg/CustomImg';
@@ -45,14 +46,16 @@ function ProductDetails() {
   }
 
   function addToCart() {
-    console.log(color, storage);
+    dispatch(addProductToCart(product_id, color, storage));
   }
 
   React.useEffect(() => {
     dispatch(setNavigation(product_id, formatedProductName()));
     dispatch(fetchProductDetail(product_id));
-    setColor(state.currentProductDetails.options.colors[0].code);
-    setStorage(state.currentProductDetails.options.storages[0].code);
+    if (state.currentProductDetails.options !== undefined) {
+      setColor(state.currentProductDetails.options.colors[0].code);
+      setStorage(state.currentProductDetails.options.storages[0].code);
+    }
   }, []);
 
   return (

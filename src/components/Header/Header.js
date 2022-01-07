@@ -8,6 +8,7 @@ import { clearNavigation } from '../../store/reducers/navigation/actions';
 
 function Header() {
   const navigation = useSelector((state) => state.navigation);
+  const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
   function resetNavigation() {
@@ -34,7 +35,7 @@ function Header() {
       </div>
       <div className="cart-wrapper">
         <div className="cart-box">
-          <div className="cart-badge">10</div>
+          <div className="cart-badge">{cart.cartCount}</div>
           <TiShoppingCart className="cart-icon" />
         </div>
       </div>
