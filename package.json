@@ -2,7 +2,7 @@
   "name": "front-end-test-mapf",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://github.com/mapf98/front-end-test-mapf",
+  "homepage": "https://mapf98.github.io/shoppyd/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
